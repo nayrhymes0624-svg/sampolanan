@@ -1,15 +1,14 @@
 import Link from "next/link";
 
 import sayHello from "./tester/page";
+import ServerSyd from "./server-client/page";
 
 
 export default function HomePage() {
   return (
-    //DYNAMIC
+
     <div>
-      <Link href="/dynamic/1">
-        Product 1
-      </Link>
+      <ServerSyd/>
     </div>
   )
 }

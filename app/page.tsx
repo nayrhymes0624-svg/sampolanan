@@ -2,13 +2,14 @@ import Link from "next/link";
 
 import sayHello from "./tester/page";
 import ServerSyd from "./server-client/page";
+import Callfangtion from "./call-function/pages";
 
 
 export default function HomePage() {
   return (
 
     <div>
-      <ServerSyd/>
+      <Callfangtion/>
     </div>
   )
 }

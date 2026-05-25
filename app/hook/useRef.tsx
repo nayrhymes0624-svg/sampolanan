@@ -1,11 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-
+//Store mutable values / DOM refs
 
 export default function UseRefSamp() {
   const inputRef = useRef<HTMLInputElement>(null);
-
   function focusInput() {
     inputRef.current?.focus();
   };
@@ -17,3 +16,4 @@ export default function UseRefSamp() {
     </div>
   );
 }
+

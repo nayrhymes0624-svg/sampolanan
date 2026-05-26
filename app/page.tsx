@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 
 import sayHello from "./tester/page";
@@ -7,13 +8,14 @@ import ComboBox from "./combo-box/page";
 import UseRefSamp from "./hook/useRef";
 import UseStateSamp from "./hook/useState";
 import UseEffectSamp from "./hook/useEffect";
+import UseRouterSamp from "./hook/useRouter";
 
 
 export default function HomePage() {
   return (
 
     <div>
-    <UseEffectSamp/>
+    <UseRouterSamp/>
     </div>
   )
 }

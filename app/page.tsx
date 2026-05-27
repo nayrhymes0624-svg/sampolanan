@@ -9,13 +9,14 @@ import UseRefSamp from "./hook/useRef";
 import UseStateSamp from "./hook/useState";
 import UseEffectSamp from "./hook/useEffect";
 import UseRouterSamp from "./hook/useRouter";
+import FuctionWOReturn from "./call-function/functionw/oreturn";
 
 
 export default function HomePage() {
   return (
 
     <div>
-    <UseRouterSamp/>
+    <FuctionWOReturn/>
     </div>
   )
 }

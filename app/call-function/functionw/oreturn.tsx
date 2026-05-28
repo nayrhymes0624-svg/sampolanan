@@ -6,8 +6,8 @@ const a = "1";
 export default function FuctionWOReturn() {
   const router = useRouter();
 
-  function samp() {
-    const fullpath = "/components";
+  function samp({year,month}:any) {
+    const fullpath = `events/${year}/${month}/abc`;
     router.push(fullpath);
   }
 

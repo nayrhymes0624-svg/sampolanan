@@ -1,9 +1,26 @@
-export const fetcher = async <T>(url: string): Promise<T> => {
+type User = {
+  id: string
+  name: string
+  email: string
+}
+
+export const fetcher = async (
+  url: string
+): Promise<User[]> => {
   const response = await fetch(url)
 
   if (!response.ok) {
-    throw new Error('Failed to fetch data')
+    throw new Error('Failed to fetch')
   }
 
-  return response.json()
+  const data = await response.json()
+
+  const user = Object.entries(data).map(
+    ([key, value]) => ({
+      id: key,
+      ...(value as Omit<User, 'id'>),
+    })
+  )
+
+  return user
 }

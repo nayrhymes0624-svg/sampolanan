@@ -1,4 +1,5 @@
 "use client";
+import { api } from "@/lib/apimongodb";
 import { useEffect, useState } from "react";
 
 interface User {
@@ -16,18 +17,13 @@ export default function MongodbSamp() {
 
   //CREATE POST
   const addUser = async () => {
-    const response = await fetch("/api/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-      }),
+    await api.post("/users", {
+      name,
+      email,
     });
-
-    const data = await response.json();
+    alert("Adding succes!");
+    fetchUsers();
+    const data = await api.get("/users");
     console.log(data);
   };
 
@@ -36,17 +32,10 @@ export default function MongodbSamp() {
   const [loading, setLoading] = useState(true);
 
   const fetchUsers = async () => {
-    try {
-      const response = await fetch("/api/users");
+    const data = await api.get("/users");
 
-      const data = await response.json();
-
-      setUsers(data);
-    } catch (error) {
-      console.error("Failed to fetch users", error);
-    } finally {
-      setLoading(false);
-    }
+    setUsers(data);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -56,61 +45,42 @@ export default function MongodbSamp() {
   //UPDATE PUT
   const updateUser = async () => {
     try {
-      const response = await fetch("/api/users", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id,
-          name,
-          email,
-        }),
+      const data = await api.put("/users", {
+        id,
+        name,
+        email,
       });
-
-      const data = await response.json();
-      console.log(data);
 
       if (data.success) {
         alert("User updated!");
 
+        fetchUsers();
+
         setId("");
         setName("");
         setEmail("");
-      } else {
-        alert("Update failed");
       }
     } catch (error) {
       console.error(error);
+
+      alert("Update failed");
     }
   };
 
   //DELETE
   const deleteUser = async (id: string) => {
     const confirmed = confirm("Delete this user?");
-
     if (!confirmed) return;
-
     try {
-      const response = await fetch("/api/users", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id,
-        }),
+      const data = await api.delete("/users", {
+        id,
       });
 
-      const data = await response.json();
+      alert("User deleted!");
 
-      if (data.success) {
-        alert("User deleted!");
-
-        fetchUsers();
-      }
+      fetchUsers();
     } catch (error) {
-      console.error(error);
+      alert("Delete failed");
     }
   };
 

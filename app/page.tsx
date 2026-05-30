@@ -1,11 +1,15 @@
+import "./globals.css";
+import Page from "./fetchusingswr/page";
 import FilterList from "./list-box/page";
+import MongodbSamp from "./mongodbsamp/page";
 
 
 export default function HomePage() {
   return (
 
     <div>
-    <FilterList/>
+     
+    <MongodbSamp/>
     </div>
   )
 }
